@@ -38,32 +38,30 @@
         </div>
         
         <div class="content-card">
-            <h2>Own Debts Declaration</h2>
+            <h2>Dept You Owe Declaration</h2>
 
             <form class="res-form">
+                <!-- Upload File, Debts Amount, Nature of debts -->
                 <div class="form-group">
-                    <label>Creditor Name/Organization *</label>
-                    <input type="text">
+                    <label>Upload File (Optional)</label>
+                    <input type="file" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png">
+                    <small>(Allowed formats: .pdf, .doc, .docx, .jpg and .png)<br>Maximum file size: 5MB</small>
                 </div>
 
                 <div class="form-group">
-                    <label>Debt Amount *</label>
+                    <label>Debts Amount *</label>
                     <input type="number" value="0.00">
                 </div>
 
                 <div class="form-group">
-                    <label>Description *</label>
-                    <input type="text">
+                    <label>Nature of debts *</label>
+                    <input type="text" placeholder="Debts you owe">
                 </div>
 
-                <div class="form-group">
-                    <label>Date of Agreement *</label>
-                    <input type="date">
-                </div>
-
-                <div class="form-group">
-                    <label>Payment Due Date</label>
-                    <input type="date">
+                <!-- Debt Source -->
+                <div class="form-group span-2">
+                    <label>Debt Source *</label>
+                    <input type="text" placeholder="Debts Source">
                 </div>
 
                 <div class="form-bottom">
