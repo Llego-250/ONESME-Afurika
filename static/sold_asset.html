@@ -38,15 +38,29 @@
         </div>
         
         <div class="content-card">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-                <p style="color: #666; font-style: italic;">No records found.</p>
-                <div style="display: flex; gap: 10px; align-items: center;">
-                    <select style="padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
-                        <option>View declaration period</option>
-                    </select>
-                    <button style="background: #6c5ce7; color: white; padding: 8px 16px; border: none; border-radius: 4px; cursor: pointer;">Add</button>
+            <h2>Sold Asset Yearly Declaration</h2>
+
+            <form class="res-form">
+                <!-- Asset type, Location, Sale Amount -->
+                <div class="form-group">
+                    <label>Asset type *</label>
+                    <input type="text" placeholder="Asset type">
                 </div>
-            </div>
+
+                <div class="form-group">
+                    <label>Location *</label>
+                    <input type="text" placeholder="Select Location...">
+                </div>
+
+                <div class="form-group">
+                    <label>Sale Amount *</label>
+                    <input type="number" value="0.00">
+                </div>
+
+                <div class="form-bottom">
+                    <button type="submit" class="btn-primary">Submit</button>
+                </div>
+            </form>
         </div>
     </main>
     
