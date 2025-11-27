@@ -1,4 +1,4 @@
-function profileShowup() {
+function profileShowUp() {
     const profileCard = document.querySelector('#profileCard');
     const showProfileBtn = document.querySelector('.signin-btn');
 

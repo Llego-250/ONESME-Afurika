@@ -14,69 +14,19 @@
           <div class="sub">
                <h1>RRA LOGO</h1>
                <p><strong>Please, enter your ID</strong><p>
-               <form id="loginForm">
+               <form class="loginForm">
                     <div style="margin-bottom: 15px;">
                          <label for="employeeId"><span>Employee ID:</span><span style="color: rebeccapurple;">*</span></label><br>
-                         <input type="text" id="employeeId" name="employeeId" required placeholder="Enter your ID eg: 12345" autocomplete="username">
-                    </div>
-                    
-                    <div style="margin-bottom: 15px;">
-                         <label for="password"><span>Password:</span><span style="color: rebeccapurple;">*</span></label><br>
-                         <input type="password" id="password" name="password" required placeholder="Enter your password" autocomplete="current-password">
+                         <input type="text" id="employeeId" name="employeeId" required placeholder="Enter your ID eg: 12345">
                     </div>
           
                     <div style="text-align: center;">
-                         <button type="submit" id="loginBtn">Login</button>
+                         <!-- <buttonType = button for now -->
+                        <a href="/static/auth_otp.html"><button type="button" id="loginbtn" required>Login</button></a> 
                     </div>
                     
-                    <div id="loginMessage" style="margin-top: 15px; text-align: center; font-size: 14px;"></div>
+                   <div id="loginMessage" style="margin-top: 15px; text-align: center; font-size: 14px;"></div>
                </form>
-               
-               <script>
-                    document.getElementById('loginForm').addEventListener('submit', function(e) {
-                         e.preventDefault();
-                         
-                         const employeeId = document.getElementById('employeeId').value;
-                         const password = document.getElementById('password').value;
-                         const messageDiv = document.getElementById('loginMessage');
-                         const loginBtn = document.getElementById('loginBtn');
-                         
-                         // Simple validation
-                         if (!employeeId || !password) {
-                              messageDiv.style.color = '#e74c3c';
-                              messageDiv.textContent = 'Please fill in all fields.';
-                              return;
-                         }
-                         
-                         // Simulate login process
-                         loginBtn.textContent = 'Logging in...';
-                         loginBtn.disabled = true;
-                         messageDiv.style.color = '#3498db';
-                         messageDiv.textContent = 'Authenticating...';
-                         
-                         setTimeout(() => {
-                              // Simple demo authentication
-                              if (employeeId === '12345' && password === 'password') {
-                                   messageDiv.style.color = '#27ae60';
-                                   messageDiv.textContent = 'Login successful! Redirecting...';
-                                   
-                                   // Store user info
-                                   localStorage.setItem('userLoggedIn', 'true');
-                                   localStorage.setItem('userName', 'Onesme Africa');
-                                   localStorage.setItem('employeeId', employeeId);
-                                   
-                                   setTimeout(() => {
-                                        window.location.href = '/static/index.html';
-                                   }, 1000);
-                              } else {
-                                   messageDiv.style.color = '#e74c3c';
-                                   messageDiv.textContent = 'Invalid credentials. Try ID: 12345, Password: password';
-                                   loginBtn.textContent = 'Login';
-                                   loginBtn.disabled = false;
-                              }
-                         }, 1500);
-                    });
-               </script>
           </div>
      
 </body>

@@ -11,40 +11,6 @@
      <script src="/scripts/profilecard.js" defer></script>
      <script src="/scripts/sidebar.js" defer></script>
      <script src="/scripts/main.js" defer></script>
-     <script>
-          document.addEventListener('DOMContentLoaded', function() {
-               // Profile dropdown functionality
-               const profileCard = document.getElementById('profileCard');
-               const signinBtn = document.getElementById('signinBtn');
-               
-               // Close dropdown when clicking outside
-               document.addEventListener('click', (e) => {
-                    if (!profileCard.contains(e.target) && !signinBtn.contains(e.target)) {
-                         profileCard.classList.remove('visible');
-                    }
-               });
-               
-               // Handle profile menu clicks
-               profileCard.addEventListener('click', (e) => {
-                    const link = e.target.closest('a');
-                    if (link) {
-                         e.preventDefault();
-                         const href = link.getAttribute('href');
-                         
-                         if (href === '#profile') {
-                              window.location.href = '/static/profile_info.html';
-                         } else if (href === '#logout') {
-                              if (confirm('Are you sure you want to logout?')) {
-                                   localStorage.clear();
-                                   window.location.href = '/static/auth_id.html';
-                              }
-                         }
-                         
-                         profileCard.classList.remove('visible');
-                    }
-               });
-          });
-     </script>
 </head>
 <body>
     <header class="top-header">
@@ -52,8 +18,8 @@
             <svg width="20" height="20" viewBox="0 0 24 24"><path fill="currentColor" d="M3 6h18v2H3zM3 11h18v2H3zM3 16h18v2H3z"/></svg>
         </button>
         <div class="header-user">
-            <button id="signinBtn" class="user-btn" onclick="profileShowup()">👤</button>
-            <div id="profileCard" class="profile-dropdown">
+            <button id="signinBtn" class="user-btn" onclick="profileShowUp()">👤</button>
+            <!-- <div id="profileCard" class="profile-dropdown">
                 <div class="profile-option">
                     <span class="profile-icon">👤</span>
                     <a href="#profile" class="profile-link">My Profile</a>
@@ -61,7 +27,7 @@
                 <div class="profile-option">
                     <span class="logout-icon">🚪</span>
                     <a href="#logout" class="logout-link">Logout</a>
-                </div>
+                </div> -->
             </div>
         </div>
     </header>
