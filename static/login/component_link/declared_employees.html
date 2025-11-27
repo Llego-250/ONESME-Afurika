@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles/global.css">
+    <link rel="stylesheet" href="/styles/sidebar.css">
+    <link rel="stylesheet" href="/styles/homepage.css">
+    <link rel="stylesheet" href="/styles/interactive.css">
+    <link rel="stylesheet" href="/styles/property-cards.css">
+    <title>Declared Process Employees</title>
+</head>
+<body>
+    <header class="top-header">
+        <button id="collapseBtn" class="hamburger" aria-label="Toggle menu">
+            <svg width="20" height="20" viewBox="0 0 24 24"><path fill="currentColor" d="M3 6h18v2H3zM3 11h18v2H3zM3 16h18v2H3z"/></svg>
+        </button>
+        <div class="header-user">
+            <button id="signinBtn" class="user-btn" onclick="profileShowup()">👤</button>
+            <div id="profileCard" class="profile-dropdown">
+                <div class="profile-option">
+                    <span class="profile-icon">👤</span>
+                    <a href="#profile" class="profile-link">My Profile</a>
+                </div>
+                <div class="profile-option">
+                    <span class="logout-icon">🚪</span>
+                    <a href="#logout" class="logout-link">Logout</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div id="sidebar-container"></div>
+
+    <main class="main-content">
+        <div class="welcome-section">
+            <h1>Hi, <strong>ONESME Afurika!</strong></h1>
+        </div>
+        
+        <div class="content-card">
+            <!-- Search and Back button -->
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                <input type="text" placeholder="Search" style="padding: 8px; border: 1px solid #ccc; border-radius: 4px; width: 200px;">
+                <button onclick="window.history.back()" style="background: #6c5ce7; color: white; padding: 8px 16px; border: none; border-radius: 4px; cursor: pointer;">Back</button>
+            </div>
+
+            <!-- Employee Table -->
+            <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+                <thead>
+                    <tr style="background: #f5f5f5;">
+                        <th style="padding: 12px; text-align: left; border: 1px solid #ddd;">Employee ID</th>
+                        <th style="padding: 12px; text-align: left; border: 1px solid #ddd;">Names</th>
+                        <th style="padding: 12px; text-align: left; border: 1px solid #ddd;">Department Name</th>
+                        <th style="padding: 12px; text-align: left; border: 1px solid #ddd;">Job Title</th>
+                        <th style="padding: 12px; text-align: left; border: 1px solid #ddd;">Email</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="padding: 12px; border: 1px solid #ddd;">7516</td>
+                        <td style="padding: 12px; border: 1px solid #ddd;">Afurika ONESME</td>
+                        <td style="padding: 12px; border: 1px solid #ddd;">Small and Medium Taxpayers Office</td>
+                        <td style="padding: 12px; border: 1px solid #ddd;">TAX OFFICER</td>
+                        <td style="padding: 12px; border: 1px solid #ddd;">joshua.nemeye@gma.gov.rw</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 12px; border: 1px solid #ddd;">78560</td>
+                        <td style="padding: 12px; border: 1px solid #ddd;">Sabri Salsa</td>
+                        <td style="padding: 12px; border: 1px solid #ddd;">Information Technology and Digital Transformation Department</td>
+                        <td style="padding: 12px; border: 1px solid #ddd;">Head of IT arrangement and Risk Management division</td>
+                        <td style="padding: 12px; border: 1px solid #ddd;">sabri.salsa@gma.gov.rw</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 12px; border: 1px solid #ddd;">190397</td>
+                        <td style="padding: 12px; border: 1px solid #ddd;">EMMANUEL MAHORO</td>
+                        <td style="padding: 12px; border: 1px solid #ddd;">Information Technology and Digital Transformation Department</td>
+                        <td style="padding: 12px; border: 1px solid #ddd;">SENIOR SYSTEM DEVELOPER</td>
+                        <td style="padding: 12px; border: 1px solid #ddd;">emmanuel.mahoro@gma.gov.rw</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 12px; border: 1px solid #ddd;">160315</td>
+                        <td style="padding: 12px; border: 1px solid #ddd;">Kmenyi Eric</td>
+                        <td style="padding: 12px; border: 1px solid #ddd;">Large Taxpayers Office</td>
+                        <td style="padding: 12px; border: 1px solid #ddd;">Tax auditor</td>
+                        <td style="padding: 12px; border: 1px solid #ddd;">eric.kmenyi@gma.gov.rw</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 12px; border: 1px solid #ddd;">209765</td>
+                        <td style="padding: 12px; border: 1px solid #ddd;">VEDASTE FABIANA</td>
+                        <td style="padding: 12px; border: 1px solid #ddd;">Information Technology and Digital Transformation Department</td>
+                        <td style="padding: 12px; border: 1px solid #ddd;">Software Developer</td>
+                        <td style="padding: 12px; border: 1px solid #ddd;">vedaste.habimana@gma.gov.rw</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 12px; border: 1px solid #ddd;">209733</td>
+                        <td style="padding: 12px; border: 1px solid #ddd;">RODRIGUE SHEMA</td>
+                        <td style="padding: 12px; border: 1px solid #ddd;">Information Technology and Digital Transformation Department</td>
+                        <td style="padding: 12px; border: 1px solid #ddd;">Software Developer</td>
+                        <td style="padding: 12px; border: 1px solid #ddd;">rodrigue.shema@gma.gov.rw</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+    
+    <script src="/scripts/profilecard.js"></script>
+    <script src="/scripts/sidebar.js"></script>
+    <script src="/scripts/main.js"></script>
+</body>
+</html>
