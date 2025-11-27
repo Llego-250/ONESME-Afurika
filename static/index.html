@@ -12,19 +12,23 @@
      <script src="/scripts/sidebar.js" defer></script>
      <script src="/scripts/main.js" defer></script>
      <script>
+          function profileShowup() {
+               const profileCard = document.getElementById('profileCard');
+               profileCard.classList.toggle('visible');
+          }
+
           document.addEventListener('DOMContentLoaded', function() {
-               // Profile dropdown functionality
                const profileCard = document.getElementById('profileCard');
                const signinBtn = document.getElementById('signinBtn');
                
-               // Close dropdown when clicking outside
+
                document.addEventListener('click', (e) => {
                     if (!profileCard.contains(e.target) && !signinBtn.contains(e.target)) {
                          profileCard.classList.remove('visible');
                     }
                });
                
-               // Handle profile menu clicks
+
                profileCard.addEventListener('click', (e) => {
                     const link = e.target.closest('a');
                     if (link) {

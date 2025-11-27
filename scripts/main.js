@@ -11,7 +11,7 @@ function initSidebar() {
     const sidebar = document.getElementById('sidebar');
     const collapseBtn = document.getElementById('collapseBtn');
     
-    if (collapseBtn) {
+    if (collapseBtn && sidebar) {
         collapseBtn.addEventListener('click', () => {
             sidebar.classList.toggle('collapsed');
         });
