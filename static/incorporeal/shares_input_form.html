@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="/styles/homepage.css">
     <link rel="stylesheet" href="/styles/interactive.css">
     <link rel="stylesheet" href="/styles/property-cards.css">
-    <title>Add Money Declaration</title>
+    <title>Add Shares Declaration</title>
 </head>
 <body>
     <header class="top-header">
@@ -34,45 +34,41 @@
 
     <main class="main-content">
         <div class="welcome-section">
-            <h1>Add <strong>Money Declaration</strong></h1>
+            <h1>Add <strong>Shares Declaration</strong></h1>
         </div>
         
         <div class="content-card">
-            <h2>Money Declaration</h2>
+            <h2>Shares Declaration</h2>
 
             <form class="res-form">
-                <!-- Bank Name, Account Number, Amount in RWF -->
                 <div class="form-group">
-                    <label>Bank Name *</label>
-                    <input type="text" placeholder="Bank Name">
+                    <label>Company/Organization Name *</label>
+                    <input type="text">
                 </div>
 
                 <div class="form-group">
-                    <label>Account Number *</label>
-                    <input type="text" placeholder="Account Number">
+                    <label>Number of Shares *</label>
+                    <input type="number">
                 </div>
 
                 <div class="form-group">
-                    <label>Amount in RWF</label>
+                    <label>Share Value *</label>
                     <input type="number" value="0.00">
                 </div>
 
-                <!-- Amount in Currency, Money in Contract -->
                 <div class="form-group">
-                    <label>Amount in Currency</label>
-                    <input type="text" placeholder="Amount in currency">
-                </div>
-
-                <div class="form-group">
-                    <label>Money in Contract *</label>
+                    <label>Total Value *</label>
                     <input type="number" value="0.00">
                 </div>
 
-
+                <div class="form-group">
+                    <label>Date of Acquisition *</label>
+                    <input type="date">
+                </div>
 
                 <div class="form-bottom">
                     <button type="button" class="btn-secondary" onclick="goBack()">Cancel</button>
-                    <button type="submit" class="btn-primary">Save Asset</button>
+                    <button type="submit" class="btn-primary">Save Declaration</button>
                 </div>
                 
                 <div id="formMessage" class="form-message"></div>
@@ -83,49 +79,26 @@
     <script src="/scripts/profilecard.js"></script>
     <script src="/scripts/sidebar.js"></script>
     <script src="/scripts/main.js"></script>
-    <script src="/scripts/residential.js"></script>
     <script>
         function goBack() {
             if (confirm('Are you sure you want to cancel? Any unsaved changes will be lost.')) {
-                window.location.href = '/static/movable/money_add.html';
+                window.location.href = '/static/incorporeal/shares_add.html';
             }
         }
         
         document.querySelector('.res-form').addEventListener('submit', function(e) {
             e.preventDefault();
             
-            const formData = new FormData(this);
-            const data = Object.fromEntries(formData.entries());
-            
-            const requiredFields = this.querySelectorAll('[required], input[type="number"][value="0.00"]');
-            let isValid = true;
-            
-            requiredFields.forEach(field => {
-                if (!field.value || field.value.trim() === '' || field.value === '0.00') {
-                    field.style.borderColor = '#e74c3c';
-                    isValid = false;
-                } else {
-                    field.style.borderColor = '';
-                }
-            });
-            
             const messageDiv = document.getElementById('formMessage');
-            
-            if (!isValid) {
-                messageDiv.textContent = 'Please fill in all required fields.';
-                messageDiv.className = 'form-message error';
-                return;
-            }
-            
-            messageDiv.textContent = 'Saving asset...';
+            messageDiv.textContent = 'Saving declaration...';
             messageDiv.className = 'form-message info';
             
             setTimeout(() => {
-                messageDiv.textContent = 'Asset saved successfully!';
+                messageDiv.textContent = 'Declaration saved successfully!';
                 messageDiv.className = 'form-message success';
                 
                 setTimeout(() => {
-                    window.location.href = '/static/movable/money_add.html';
+                    window.location.href = '/static/incorporeal/shares_add.html';
                 }, 1500);
             }, 1000);
         });

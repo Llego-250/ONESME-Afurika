@@ -34,25 +34,35 @@
 
     <main class="main-content">
         <div class="welcome-section">
-            <h1>Add <strong>Other Movable Asset Declaration</strong></h1>
+            <h1>Add <strong>Other Movable Declaration</strong></h1>
         </div>
         
         <div class="content-card">
-            <h2>Other Movable Asset Declaration</h2>
+            <h2>Other Movable Declaration</h2>
 
             <form class="res-form">
-                <!-- Owner & Description -->
-                <div class="form-group span-2">
+                <!-- Movable Type, Owner, Location -->
+                <div class="form-group">
+                    <label>Movable Type</label>
+                    <input type="text">
+                </div>
+
+                <div class="form-group">
                     <label>Owner</label>
                     <input type="text">
                 </div>
 
-                <div class="form-group span-2">
-                    <label>Description</label>
+                <div class="form-group">
+                    <label>Location</label>
                     <input type="text">
                 </div>
 
-                <!-- Estimated, Source, UPI -->
+                <!-- Date, Estimated Value, Asset Source -->
+                <div class="form-group">
+                    <label>Date of acquisition *</label>
+                    <input type="date" placeholder="mm/dd/yyyy">
+                </div>
+
                 <div class="form-group">
                     <label>Estimated Value *</label>
                     <input type="number" value="0.00">
@@ -60,18 +70,7 @@
 
                 <div class="form-group">
                     <label>Asset Source *</label>
-                    <input type="text">
-                </div>
-
-                <div class="form-group">
-                    <label>UPI *</label>
-                    <input type="text">
-                </div>
-
-                <!-- Date -->
-                <div class="form-group">
-                    <label>Date of Acquisition *</label>
-                    <input type="date">
+                    <input type="text" placeholder="Asset source">
                 </div>
 
                 <!-- JOINT ASSET -->
@@ -135,19 +134,16 @@
                     </div>
                 </div>
 
-                <!-- RENT ASSET -->
-                <div class="radio-row">
-                    <label>Is a rent Asset *</label>
-                    <label><input type="radio" name="rent" value="yes"> Yes</label>
-                    <label><input type="radio" name="rent" value="no" checked> No</label>
+
+                <!-- Estimated Spent Amount & Economical Income -->
+                <div class="form-group">
+                    <label>Estimated Spent Amount *</label>
+                    <input type="number" value="0.00">
                 </div>
 
-                <!-- RENT FIELDS -->
-                <div id="rent-fields" class="hidden-fields">
-                    <div class="form-group">
-                        <label>Monthly pay</label>
-                        <input type="number" value="0.00">
-                    </div>
+                <div class="form-group">
+                    <label>Economical Income *</label>
+                    <input type="number" value="0.00">
                 </div>
 
                 <div class="form-bottom">

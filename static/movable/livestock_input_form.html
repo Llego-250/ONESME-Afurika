@@ -41,18 +41,39 @@
             <h2>Livestock Declaration</h2>
 
             <form class="res-form">
-                <!-- Owner & Description -->
+                <!-- Livestock Type, Breed, Number -->
+                <div class="form-group">
+                    <label>Livestock Type</label>
+                    <input type="text">
+                </div>
+
+                <div class="form-group">
+                    <label>Breed</label>
+                    <input type="text">
+                </div>
+
+                <div class="form-group">
+                    <label>Number</label>
+                    <input type="number">
+                </div>
+
+                <!-- Owner & Location -->
                 <div class="form-group span-2">
                     <label>Owner</label>
                     <input type="text">
                 </div>
 
                 <div class="form-group span-2">
-                    <label>Description</label>
+                    <label>Location</label>
                     <input type="text">
                 </div>
 
-                <!-- Estimated, Source, UPI -->
+                <!-- Date, Estimated Value, Asset Source -->
+                <div class="form-group">
+                    <label>Date of acquisition *</label>
+                    <input type="date">
+                </div>
+
                 <div class="form-group">
                     <label>Estimated Value *</label>
                     <input type="number" value="0.00">
@@ -60,18 +81,7 @@
 
                 <div class="form-group">
                     <label>Asset Source *</label>
-                    <input type="text">
-                </div>
-
-                <div class="form-group">
-                    <label>UPI *</label>
-                    <input type="text">
-                </div>
-
-                <!-- Date -->
-                <div class="form-group">
-                    <label>Date of Acquisition *</label>
-                    <input type="date">
+                    <input type="text" placeholder="Asset source">
                 </div>
 
                 <!-- JOINT ASSET -->
@@ -148,6 +158,17 @@
                         <label>Monthly pay</label>
                         <input type="number" value="0.00">
                     </div>
+                </div>
+
+                <!-- Spent Amount & Economical Income -->
+                <div class="form-group">
+                    <label>Spent Amount *</label>
+                    <input type="number" value="0.00">
+                </div>
+
+                <div class="form-group">
+                    <label>Economical Income *</label>
+                    <input type="number" value="0.00">
                 </div>
 
                 <div class="form-bottom">
