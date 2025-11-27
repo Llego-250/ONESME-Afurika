@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Dashboard — Shares Declaration</title>
+  <link rel="stylesheet" href="/styles/main.css" />
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-top">
+        <button id="collapseBtn" class="hamburger" aria-label="Toggle menu">
+          <svg width="20" height="20" viewBox="0 0 24 24"><path fill="currentColor" d="M3 6h18v2H3zM3 11h18v2H3zM3 16h18v2H3z"/></svg>
+        </button>
+        <div class="logo">
+          <div class="logo-mark">🌿</div>
+          <div class="logo-text">RPA</div>
+        </div>
+      </div>
+
+      <nav class="menu">
+        <ul>
+          <li class="menu-item">
+            <span class="menu-label">MAIN MENU</span>
+          </li>
+
+          <li class="menu-item">
+            <a href="#"><span class="icon">🏠</span> <span class="text">Immovable Asset</span></a>
+          </li>
+
+          <li class="menu-item">
+            <a href="#"><span class="icon">📦</span> <span class="text">Movable Asset</span></a>
+          </li>
+
+          <li class="menu-item active">
+            <a href="#"><span class="icon">🧾</span> <span class="text">Incorporeal Asset</span></a>
+            <ul class="submenu">
+              <li><a href="#">Shares in society, commercial co-operatives</a></li>
+              <li><a href="#">Debts that societies or public institutions owe you</a></li>
+            </ul>
+          </li>
+
+          <li class="menu-item">
+            <a href="#"><span class="icon">⚙️</span> <span class="text">Admin</span></a>
+          </li>
+
+        </ul>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="user-mini">Admin</div>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div class="left">
+          <button id="mobileToggle" class="hamburger-mobile" aria-label="Open menu">
+            <svg width="20" height="20" viewBox="0 0 24 24"><path fill="currentColor" d="M3 6h18v2H3zM3 11h18v2H3zM3 16h18v2H3z"/></svg>
+          </button>
+          <div class="brand">
+            <img src="" alt="" class="brand-logo-placeholder" />
+            <div class="brand-text">RPA — Employee</div>
+          </div>
+        </div>
+        <div class="right">
+          <div class="user-icon">👤</div>
+        </div>
+      </header>
+
+      <section class="content">
+        <div class="breadcrumb">Incorporeal Asset &nbsp; &gt; &nbsp; SharesInSociety</div>
+        <h1 class="welcome">Hi, ONESME Afurika!</h1>
+
+        <div class="card">
+          <h2>Shares In Society Declaration</h2>
+          <form id="declarationForm" novalidate>
+            <div class="row">
+              <div class="field">
+                <label for="company">Company Name <span class="req">*</span></label>
+                <input id="company" name="company" type="text" placeholder="Company" required>
+              </div>
+
+              <div class="field">
+                <label for="dividend">Dividend (Optional)</label>
+                <input id="dividend" name="dividend" type="text" placeholder="Dividend">
+              </div>
+
+              <div class="field">
+                <label for="shareAmount">Share amount <span class="req">*</span></label>
+                <input id="shareAmount" name="shareAmount" type="number" step="any" placeholder="0.00" required>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="field">
+                <label for="tin">Tin (Optional)</label>
+                <input id="tin" name="tin" type="text" placeholder="TIN (Optional)">
+              </div>
+
+              <div class="field">
+                <label for="location">Location <span class="req">*</span></label>
+                <input id="location" name="location" type="text" placeholder="Location..." required>
+              </div>
+            </div>
+
+            <div class="form-actions">
+              <button type="submit" class="btn-primary">Submit</button>
+            </div>
+
+            <div id="formMsg" class="form-msg" aria-live="polite"></div>
+          </form>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="/scripts/script.js"></script>
+</body>
+</html>

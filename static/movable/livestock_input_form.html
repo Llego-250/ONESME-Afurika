@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles/global.css">
+    <link rel="stylesheet" href="/styles/sidebar.css">
+    <link rel="stylesheet" href="/styles/homepage.css">
+    <link rel="stylesheet" href="/styles/interactive.css">
+    <link rel="stylesheet" href="/styles/property-cards.css">
+    <title>Add Livestock Declaration</title>
+</head>
+<body>
+    <header class="top-header">
+        <button id="collapseBtn" class="hamburger" aria-label="Toggle menu">
+            <svg width="20" height="20" viewBox="0 0 24 24"><path fill="currentColor" d="M3 6h18v2H3zM3 11h18v2H3zM3 16h18v2H3z"/></svg>
+        </button>
+        <div class="header-user">
+            <button id="signinBtn" class="user-btn" onclick="profileShowup()">👤</button>
+            <div id="profileCard" class="profile-dropdown">
+                <div class="profile-option">
+                    <span class="profile-icon">👤</span>
+                    <a href="#profile" class="profile-link">My Profile</a>
+                </div>
+                <div class="profile-option">
+                    <span class="logout-icon">🚪</span>
+                    <a href="#logout" class="logout-link">Logout</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div id="sidebar-container"></div>
+
+    <main class="main-content">
+        <div class="welcome-section">
+            <h1>Add <strong>Livestock Declaration</strong></h1>
+        </div>
+        
+        <div class="content-card">
+            <h2>Livestock Declaration</h2>
+
+            <form class="res-form">
+                <!-- Owner & Description -->
+                <div class="form-group span-2">
+                    <label>Owner</label>
+                    <input type="text">
+                </div>
+
+                <div class="form-group span-2">
+                    <label>Description</label>
+                    <input type="text">
+                </div>
+
+                <!-- Estimated, Source, UPI -->
+                <div class="form-group">
+                    <label>Estimated Value *</label>
+                    <input type="number" value="0.00">
+                </div>
+
+                <div class="form-group">
+                    <label>Asset Source *</label>
+                    <input type="text">
+                </div>
+
+                <div class="form-group">
+                    <label>UPI *</label>
+                    <input type="text">
+                </div>
+
+                <!-- Date -->
+                <div class="form-group">
+                    <label>Date of Acquisition *</label>
+                    <input type="date">
+                </div>
+
+                <!-- JOINT ASSET -->
+                <div class="radio-row">
+                    <label>Is a joint Asset *</label>
+                    <label><input type="radio" name="joint" value="yes"> Yes</label>
+                    <label><input type="radio" name="joint" value="no" checked> No</label>
+                </div>
+
+                <!-- JOINT FIELDS -->
+                <div id="joint-fields" class="hidden-fields">
+                    <div class="form-group">
+                        <label>Percentage of shares *</label>
+                        <input type="number">
+                    </div>
+                </div>
+
+                <!-- BOUGHT ASSET -->
+                <div class="radio-row">
+                    <label>Is a bought Asset *</label>
+                    <label><input type="radio" name="bought" value="yes"> Yes</label>
+                    <label><input type="radio" name="bought" value="no" checked> No</label>
+                </div>
+
+                <!-- BOUGHT FIELDS -->
+                <div id="bought-fields" class="hidden-fields">
+                    <div class="form-group">
+                        <label>Seller name *</label>
+                        <input type="text">
+                    </div>
+                    <div class="form-group">
+                        <label>Acquisition value *</label>
+                        <input type="number" value="0.00">
+                    </div>
+                </div>
+
+                <!-- LOAN ASSET -->
+                <div class="radio-row">
+                    <label>Is a loan Asset *</label>
+                    <label><input type="radio" name="loan" value="yes"> Yes</label>
+                    <label><input type="radio" name="loan" value="no" checked> No</label>
+                </div>
+
+                <!-- LOAN FIELDS -->
+                <div id="loan-fields" class="hidden-fields">
+                    <div class="form-group">
+                        <label>Bank Name</label>
+                        <input type="text">
+                    </div>
+                    <div class="form-group">
+                        <label>Installment</label>
+                        <input type="text">
+                    </div>
+                    <div class="form-group">
+                        <label>Loan Amount</label>
+                        <input type="number" value="0.00">
+                    </div>
+                    <div class="form-group">
+                        <label>Date to clear loan</label>
+                        <input type="date">
+                    </div>
+                </div>
+
+                <!-- RENT ASSET -->
+                <div class="radio-row">
+                    <label>Is a rent Asset *</label>
+                    <label><input type="radio" name="rent" value="yes"> Yes</label>
+                    <label><input type="radio" name="rent" value="no" checked> No</label>
+                </div>
+
+                <!-- RENT FIELDS -->
+                <div id="rent-fields" class="hidden-fields">
+                    <div class="form-group">
+                        <label>Monthly pay</label>
+                        <input type="number" value="0.00">
+                    </div>
+                </div>
+
+                <div class="form-bottom">
+                    <button type="button" class="btn-secondary" onclick="goBack()">Cancel</button>
+                    <button type="submit" class="btn-primary">Save Asset</button>
+                </div>
+                
+                <div id="formMessage" class="form-message"></div>
+            </form>
+        </div>
+    </main>
+    
+    <script src="/scripts/profilecard.js"></script>
+    <script src="/scripts/sidebar.js"></script>
+    <script src="/scripts/main.js"></script>
+    <script src="/scripts/residential.js"></script>
+    <script>
+        function goBack() {
+            if (confirm('Are you sure you want to cancel? Any unsaved changes will be lost.')) {
+                window.location.href = '/static/movable/livestock_add.html';
+            }
+        }
+        
+        document.querySelector('.res-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData.entries());
+            
+            const requiredFields = this.querySelectorAll('[required], input[type="number"][value="0.00"]');
+            let isValid = true;
+            
+            requiredFields.forEach(field => {
+                if (!field.value || field.value.trim() === '' || field.value === '0.00') {
+                    field.style.borderColor = '#e74c3c';
+                    isValid = false;
+                } else {
+                    field.style.borderColor = '';
+                }
+            });
+            
+            const messageDiv = document.getElementById('formMessage');
+            
+            if (!isValid) {
+                messageDiv.textContent = 'Please fill in all required fields.';
+                messageDiv.className = 'form-message error';
+                return;
+            }
+            
+            messageDiv.textContent = 'Saving asset...';
+            messageDiv.className = 'form-message info';
+            
+            setTimeout(() => {
+                messageDiv.textContent = 'Asset saved successfully!';
+                messageDiv.className = 'form-message success';
+                
+                setTimeout(() => {
+                    window.location.href = '/static/movable/livestock_add.html';
+                }, 1500);
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

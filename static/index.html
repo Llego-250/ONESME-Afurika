@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Document</title>
+     <link rel="stylesheet" href="/styles/global.css">
+     <link rel="stylesheet" href="/styles/sidebar.css">
+     <link rel="stylesheet" href="/styles/interactive.css">
+     <link rel="stylesheet" href="/styles/homepage.css">
+     <script src="/scripts/profilecard.js" defer></script>
+     <script src="/scripts/sidebar.js" defer></script>
+     <script src="/scripts/main.js" defer></script>
+     <script>
+          document.addEventListener('DOMContentLoaded', function() {
+               // Profile dropdown functionality
+               const profileCard = document.getElementById('profileCard');
+               const signinBtn = document.getElementById('signinBtn');
+               
+               // Close dropdown when clicking outside
+               document.addEventListener('click', (e) => {
+                    if (!profileCard.contains(e.target) && !signinBtn.contains(e.target)) {
+                         profileCard.classList.remove('visible');
+                    }
+               });
+               
+               // Handle profile menu clicks
+               profileCard.addEventListener('click', (e) => {
+                    const link = e.target.closest('a');
+                    if (link) {
+                         e.preventDefault();
+                         const href = link.getAttribute('href');
+                         
+                         if (href === '#profile') {
+                              window.location.href = '/static/profile_info.html';
+                         } else if (href === '#logout') {
+                              if (confirm('Are you sure you want to logout?')) {
+                                   localStorage.clear();
+                                   window.location.href = '/static/auth_id.html';
+                              }
+                         }
+                         
+                         profileCard.classList.remove('visible');
+                    }
+               });
+          });
+     </script>
+</head>
+<body>
+    <header class="top-header">
+        <button id="collapseBtn" class="hamburger" aria-label="Toggle menu">
+            <svg width="20" height="20" viewBox="0 0 24 24"><path fill="currentColor" d="M3 6h18v2H3zM3 11h18v2H3zM3 16h18v2H3z"/></svg>
+        </button>
+        <div class="header-user">
+            <button id="signinBtn" class="user-btn" onclick="profileShowup()">👤</button>
+            <div id="profileCard" class="profile-dropdown">
+                <div class="profile-option">
+                    <span class="profile-icon">👤</span>
+                    <a href="#profile" class="profile-link">My Profile</a>
+                </div>
+                <div class="profile-option">
+                    <span class="logout-icon">🚪</span>
+                    <a href="#logout" class="logout-link">Logout</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div id="sidebar-container"></div>
+
+    <main class="main-content">
+        
+        <div class="welcome-section">
+            <h1>Hi, <strong>ONESME Afurika!</strong></h1>
+        </div>
+
+        <div class="content-card">
+            <h2>Asset Declaration</h2>
+            
+            <div class="info-section">
+                <h3>Welcome message</h3>
+                <p>Rwanda Revenue Authority are aware mandate of tax collection on behalf of the government of Rwanda, and to assist its members. It has an obligation to fight against corruption and other misconducts. According to Article 8 of RRA Code of Conduct on Declaration of Assets, all RRA employees have an obligation to declare their assets annually.</p>
+            </div>
+            
+            <div class="info-section">
+                <h3>What do you have to know?</h3>
+                <p>RRA employees are obliged to submit their personal assets, the assets of their spouses and those of their children below the age of 18. You should provide all required information on your assets both in Rwanda and abroad.</p>
+            </div>
+        </div>
+
+    </main>
+</body>
+</html>

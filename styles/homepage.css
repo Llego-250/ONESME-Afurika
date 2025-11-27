@@ -1,0 +1,271 @@
+.top-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    background: #f8f9fa;
+    border-bottom: 1px solid #e5e5e5;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    z-index: 1000;
+}
+
+.hamburger {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    color: #666;
+}
+
+.header-logo img {
+    width: 40px;
+    height: 40px;
+}
+
+.user-btn {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 50%;
+    transition: background 0.2s ease;
+}
+
+.user-btn:hover {
+    background: #e9ecef;
+}
+
+/* Profile Dropdown */
+.header-user {
+    position: relative;
+}
+
+.profile-dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    min-width: 180px;
+    margin-top: 8px;
+    z-index: 1001;
+    border: 1px solid #e5e5e5;
+}
+
+.profile-dropdown.visible {
+    display: block;
+}
+
+.profile-option {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.profile-option:last-child {
+    border-bottom: none;
+}
+
+.profile-option:hover {
+    background: #f8f9fa;
+}
+
+.profile-option .profile-icon,
+.profile-option .logout-icon {
+    font-size: 16px;
+}
+
+.profile-option a {
+    text-decoration: none;
+    color: #333;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.profile-option a:hover {
+    color: #007bff;
+}
+
+/* Sidebar Updates */
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 60px;
+    width: 280px;
+    height: calc(100vh - 60px);
+    background: #2c3e50;
+    color: white;
+    padding: 20px 0;
+    overflow-y: auto;
+    transition: transform 0.3s ease;
+}
+
+.sidebar.collapsed {
+    transform: translateX(-280px);
+}
+
+.sidebar-header {
+    padding: 0 20px 15px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    margin-bottom: 20px;
+}
+
+.sidebar-header .menu-label {
+    font-size: 12px;
+    color: rgba(255,255,255,0.6);
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu-item {
+    margin: 0;
+}
+
+.menu-item a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 20px;
+    color: rgba(255,255,255,0.8);
+    text-decoration: none;
+    font-size: 14px;
+    transition: all 0.2s ease;
+    position: relative;
+}
+
+.menu-item a:hover {
+    background: rgba(255,255,255,0.1);
+    color: white;
+}
+
+.menu-item .icon {
+    font-size: 16px;
+    width: 20px;
+    text-align: center;
+}
+
+.badge {
+    background: #f39c12;
+    color: white;
+    font-size: 11px;
+    padding: 2px 6px;
+    border-radius: 10px;
+    margin-left: auto;
+    font-weight: 600;
+}
+
+/* Main Content */
+.main-content {
+    margin-left: 280px;
+    margin-top: 60px;
+    padding: 0;
+    background: #f8f9fa;
+    min-height: calc(100vh - 60px);
+    transition: margin-left 0.3s ease;
+}
+
+.sidebar.collapsed + .main-content {
+    margin-left: 0;
+}
+
+.welcome-section {
+    background: white;
+    padding: 20px 30px;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.welcome-section h1 {
+    margin: 0;
+    font-size: 24px;
+    color: #2c3e50;
+    font-weight: 400;
+}
+
+.welcome-section strong {
+    color: #3498db;
+    font-weight: 600;
+}
+
+.content-card {
+    background: white;
+    margin: 20px 30px;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.content-card h2 {
+    margin: 0 0 30px 0;
+    font-size: 28px;
+    color: #2c3e50;
+    font-weight: 600;
+}
+
+.info-section {
+    margin-bottom: 30px;
+}
+
+.info-section h3 {
+    margin: 0 0 15px 0;
+    font-size: 18px;
+    color: #34495e;
+    font-weight: 600;
+}
+
+.info-section p {
+    margin: 0;
+    line-height: 1.6;
+    color: #555;
+    font-size: 14px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .sidebar {
+        transform: translateX(-280px);
+    }
+    
+    .sidebar.open {
+        transform: translateX(0);
+    }
+    
+    .main-content {
+        margin-left: 0;
+    }
+    
+    .welcome-section,
+    .content-card {
+        margin: 10px;
+        padding: 20px;
+    }
+    
+    .welcome-section h1 {
+        font-size: 20px;
+    }
+    
+    .content-card h2 {
+        font-size: 24px;
+    }
+    
+    .profile-dropdown {
+        right: -10px;
+        min-width: 160px;
+    }
+}

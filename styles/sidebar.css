@@ -1,0 +1,107 @@
+/* Sidebar styles - consistent across all pages */
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 60px;
+    width: 280px;
+    height: calc(100vh - 60px);
+    background: #2c3e50;
+    color: white;
+    padding: 20px 0;
+    overflow-y: auto;
+    transition: transform 0.3s ease;
+    z-index: 999;
+}
+
+.sidebar.collapsed {
+    transform: translateX(-280px);
+}
+
+.sidebar-header {
+    padding: 0 20px 15px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    margin-bottom: 20px;
+}
+
+.sidebar-header .menu-label {
+    font-size: 12px;
+    color: rgba(255,255,255,0.6);
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu-item {
+    margin: 0;
+}
+
+.menu-item a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 20px;
+    color: rgba(255,255,255,0.8);
+    text-decoration: none;
+    font-size: 14px;
+    transition: all 0.2s ease;
+    position: relative;
+}
+
+.menu-item a:hover {
+    background: rgba(255,255,255,0.1);
+    color: white;
+}
+
+.menu-item .icon {
+    font-size: 16px;
+    width: 20px;
+    text-align: center;
+}
+
+.badge {
+    background: #f39c12;
+    color: white;
+    font-size: 11px;
+    padding: 2px 6px;
+    border-radius: 10px;
+    margin-left: auto;
+    font-weight: 600;
+}
+
+.arrow {
+    margin-left: auto;
+    font-size: 12px;
+    transition: transform 0.2s ease;
+}
+
+.menu-item.active .arrow {
+    transform: rotate(180deg);
+}
+
+.submenu {
+    display: none;
+    background: rgba(0,0,0,0.2);
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu-item.active .submenu {
+    display: block;
+}
+
+.submenu li a {
+    padding: 10px 20px 10px 50px;
+    font-size: 13px;
+    color: rgba(255,255,255,0.7);
+}
+
+.submenu li a:hover {
+    background: rgba(255,255,255,0.15);
+    color: white;
+}
