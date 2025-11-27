@@ -8,10 +8,10 @@
      <link rel="stylesheet" href="/styles/sidebar.css">
      <link rel="stylesheet" href="/styles/interactive.css">
      <link rel="stylesheet" href="/styles/homepage.css">
-     <script src="/scripts/profilecard.js" defer></script>
+    <script src="/scripts/profilecard.js" defer></script>
      <script src="/scripts/sidebar.js" defer></script>
      <script src="/scripts/main.js" defer></script>
-     <script src="/scripts/profile-dropdown.js" defer></script>
+    <!-- using profilecard.js implementation; removed duplicate profile-dropdown.js to avoid conflicts -->
 </head>
 <body>
     <header class="top-header">
@@ -19,17 +19,10 @@
             <svg width="20" height="20" viewBox="0 0 24 24"><path fill="currentColor" d="M3 6h18v2H3zM3 11h18v2H3zM3 16h18v2H3z"/></svg>
         </button>
         <div class="header-user">
-            <button id="signinBtn" class="user-btn" onclick="profileShowUp()">👤</button>
-            <!-- <div id="profileCard" class="profile-dropdown">
-                <div class="profile-option">
-                    <span class="profile-icon">👤</span>
-                    <a href="#profile" class="profile-link">My Profile</a>
-                </div>
-                <div class="profile-option">
-                    <span class="logout-icon">🚪</span>
-                    <a href="#logout" class="logout-link">Logout</a>
-                </div> -->
-            </div>
+            <button id="signinBtn" class="user-btn" onclick="profileShowup()">👤</button>
+
+            <!-- dropdown/menu container (kept empty so scripts can populate it) -->
+            <div id="profileCard" class="profile-dropdown" aria-hidden="true"></div>
         </div>
     </header>
 

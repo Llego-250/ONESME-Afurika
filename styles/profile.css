@@ -61,23 +61,30 @@ body {
 /* Main Profile Container */
 .profile-container {
   flex: 1;
-  padding: 32px;
+  /* leave space for the fixed header and center content */
+  padding: 150px 22px 22px 22px; /* top padding equals header height + a comfortable gap */
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
+  align-self: end;
+  /* center the card vertically */
+  /* min-height: calc(100vh - 120px); */
 }
 
 .profile-card {
-  width: 100%;
-  max-width: 1000px;
+  width: 90%;
+  max-width: 680px; /* narrower so the card fits more centered on smaller screens */
   background: var(--card-bg);
   border-radius: 12px;
   box-shadow: 0 8px 24px rgba(44, 44, 44, 0.1);
   display: grid;
-  grid-template-columns: 200px 1fr;
-  gap: 40px;
-  padding: 40px;
+  grid-template-columns: 160px 1fr; /* smaller avatar column */
+  gap: 24px;
+  padding: 32px; /* reduced padding so card is more compact */
   animation: slideIn 0.3s ease-out;
+  /* slightly nudge card to the right so it sits ~15px to the right of exact center */
+  transform: translateX(85px);
+  margin: 0 auto;
 }
 
 @keyframes slideIn {
@@ -95,19 +102,19 @@ body {
 .profile-left {
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center; /* vertically center the avatar */
 }
 
 .profile-avatar {
-  width: 150px;
-  height: 150px;
+  width: 120px; /* slightly smaller avatar */
+  height: 120px;
   background: linear-gradient(135deg, var(--primary), var(--sidebar-accent));
   border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 60px;
-  box-shadow: 0 4px 12px rgba(106, 75, 214, 0.2);
+  font-size: 48px;
+  box-shadow: 0 4px 12px rgba(106, 75, 214, 0.18);
 }
 
 /* Right Side - Info */
@@ -209,6 +216,23 @@ body {
   transition: all 0.2s ease;
 }
 
+.profil-header {
+  /* pinned header across the top of the page */
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  padding: 16px 32px;
+  background: #dcd4ee;
+  color: #6e6a6a;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+  width: 100vw; /* corrected typo */
+}
+
 .btn-secondary:hover {
   background: rgba(106, 75, 214, 0.08);
 }
@@ -221,12 +245,18 @@ body {
     padding: 24px;
   }
 
+  /* undo the desktop translate on smaller screens (full-width card should stay flush) */
+  .profile-card {
+    transform: none;
+  }
+
   .profile-header {
     padding: 16px 20px;
   }
 
   .profile-container {
-    padding: 16px;
+    /* keep space on smaller screens for fixed header */
+    padding: calc(76px + 16px) 16px 16px 16px;
   }
 
   .profile-grid {
