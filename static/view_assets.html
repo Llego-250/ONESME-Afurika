@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles/global.css">
+    <link rel="stylesheet" href="/styles/sidebar.css">
+    <link rel="stylesheet" href="/styles/homepage.css">
+    <link rel="stylesheet" href="/styles/interactive.css">
+    <title>View Assets</title>
+    <style>
+        .view-controls { display: flex; gap: 10px; margin: 20px 0; }
+        .view-btn { padding: 8px 16px; border: 1px solid #ddd; background: white; cursor: pointer; }
+        .view-btn.active { background: #2c5aa0; color: white; }
+        .asset-card { border: 1px solid #ddd; padding: 15px; margin: 10px 0; border-radius: 8px; }
+        .asset-table { width: 100%; border-collapse: collapse; }
+        .asset-table th, .asset-table td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        .board-view { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        .board-card { background: #f9f9f9; padding: 20px; border-radius: 8px; border-left: 4px solid #2c5aa0; }
+    </style>
+</head>
+<body>
+    <header class="top-header">
+        <button id="collapseBtn" class="hamburger" aria-label="Toggle menu">
+            <svg width="20" height="20" viewBox="0 0 24 24"><path fill="currentColor" d="M3 6h18v2H3zM3 11h18v2H3zM3 16h18v2H3z"/></svg>
+        </button>
+        <div class="header-user">
+            <button id="signinBtn" class="user-btn" onclick="profileShowup()">👤</button>
+            <div id="profileCard" class="profile-dropdown">
+                <div class="profile-option">
+                    <span class="profile-icon">👤</span>
+                    <a href="#profile" class="profile-link">My Profile</a>
+                </div>
+                <div class="profile-option">
+                    <span class="logout-icon">🚪</span>
+                    <a href="#logout" class="logout-link">Logout</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div id="sidebar-container"></div>
+
+    <main class="main-content">
+        <div class="welcome-section">
+            <h1>View <strong>Assets</strong></h1>
+        </div>
+        
+        <div class="content-card">
+            <div class="view-controls">
+                <select id="assetType">
+                    <option value="all">All Assets</option>
+                    <option value="business">Business Assets</option>
+                    <option value="sold">Sold Assets</option>
+                    <option value="immovable">Immovable Assets</option>
+                    <option value="movable">Movable Assets</option>
+                    <option value="incorporeal">Incorporeal Assets</option>
+                </select>
+                
+                <button class="view-btn active" data-view="card">Card View</button>
+                <button class="view-btn" data-view="table">Table View</button>
+                <button class="view-btn" data-view="board">Board View</button>
+            </div>
+            
+            <div id="assetsContainer"></div>
+        </div>
+    </main>
+    
+    <script src="/scripts/profilecard.js"></script>
+    <script src="/scripts/sidebar.js"></script>
+    <script src="/scripts/main.js"></script>
+    <script>
+        let currentView = 'card';
+        let currentType = 'all';
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            loadAssets();
+            
+            document.querySelectorAll('.view-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    document.querySelectorAll('.view-btn').forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    currentView = this.dataset.view;
+                    loadAssets();
+                });
+            });
+            
+            document.getElementById('assetType').addEventListener('change', function() {
+                currentType = this.value;
+                loadAssets();
+            });
+        });
+        
+        async function loadAssets() {
+            try {
+                const response = await fetch(`/api/assets/view?type=${currentType}&view=${currentView}`);
+                const data = await response.json();
+                
+                if (data.success) {
+                    renderAssets(data.assets, currentView);
+                }
+            } catch (error) {
+                console.error('Failed to load assets:', error);
+            }
+        }
+        
+        function renderAssets(assets, view) {
+            const container = document.getElementById('assetsContainer');
+            
+            if (assets.length === 0) {
+                container.innerHTML = '<p>No assets found.</p>';
+                return;
+            }
+            
+            if (view === 'card') {
+                container.innerHTML = assets.map(asset => `
+                    <div class="asset-card">
+                        <h3>${asset.type.toUpperCase()} Asset</h3>
+                        <p><strong>ID:</strong> ${asset.id}</p>
+                        ${asset.business_type ? `<p><strong>Business Type:</strong> ${asset.business_type}</p>` : ''}
+                        ${asset.asset_type ? `<p><strong>Asset Type:</strong> ${asset.asset_type}</p>` : ''}
+                        ${asset.location ? `<p><strong>Location:</strong> ${asset.location}</p>` : ''}
+                        ${asset.estimated_value ? `<p><strong>Value:</strong> ${asset.estimated_value} RWF</p>` : ''}
+                        ${asset.capital ? `<p><strong>Capital:</strong> ${asset.capital} RWF</p>` : ''}
+                        ${asset.sale_amount ? `<p><strong>Sale Amount:</strong> ${asset.sale_amount} RWF</p>` : ''}
+                        <p><strong>Created:</strong> ${new Date(asset.created_at).toLocaleDateString()}</p>
+                    </div>
+                `).join('');
+            } else if (view === 'table') {
+                container.innerHTML = `
+                    <table class="asset-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Type</th>
+                                <th>Description</th>
+                                <th>Value</th>
+                                <th>Created</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${assets.map(asset => `
+                                <tr>
+                                    <td>${asset.id}</td>
+                                    <td>${asset.type}</td>
+                                    <td>${asset.business_type || asset.asset_type || asset.description || 'N/A'}</td>
+                                    <td>${asset.estimated_value || asset.capital || asset.sale_amount || 'N/A'} RWF</td>
+                                    <td>${new Date(asset.created_at).toLocaleDateString()}</td>
+                                </tr>
+                            `).join('')}
+                        </tbody>
+                    </table>
+                `;
+            } else if (view === 'board') {
+                container.innerHTML = `
+                    <div class="board-view">
+                        ${assets.map(asset => `
+                            <div class="board-card">
+                                <h4>${asset.type.toUpperCase()}</h4>
+                                <div><strong>ID:</strong> ${asset.id}</div>
+                                <div><strong>Description:</strong> ${asset.business_type || asset.asset_type || asset.description || 'N/A'}</div>
+                                <div><strong>Value:</strong> ${asset.estimated_value || asset.capital || asset.sale_amount || 'N/A'} RWF</div>
+                                <div><strong>Date:</strong> ${new Date(asset.created_at).toLocaleDateString()}</div>
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+            }
+        }
+    </script>
+</body>
+</html>

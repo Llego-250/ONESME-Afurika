@@ -44,28 +44,28 @@
                 <!-- Business Type, Capital, Annual TurnOver -->
                 <div class="form-group">
                     <label>Business Type *</label>
-                    <input type="text" placeholder="Type of the business">
+                    <input type="text" name="business_type" placeholder="Type of the business">
                 </div>
 
                 <div class="form-group">
                     <label>Capital *</label>
-                    <input type="number" value="0.00">
+                    <input type="number" name="capital" value="0.00">
                 </div>
 
                 <div class="form-group">
                     <label>Annual TurnOver *</label>
-                    <input type="number" value="0.00">
+                    <input type="number" name="annual_turnover" value="0.00">
                 </div>
 
                 <!-- Annual Profit, TIN(Optional) -->
                 <div class="form-group">
                     <label>Annual Profit *</label>
-                    <input type="number" value="0.00">
+                    <input type="number" name="annual_profit" value="0.00">
                 </div>
 
                 <div class="form-group">
                     <label>TIN(Optional)</label>
-                    <input type="text" placeholder="TIN (Optional)">
+                    <input type="text" name="tin" placeholder="TIN (Optional)">
                 </div>
 
                 <div class="form-bottom">
@@ -75,9 +75,42 @@
         </div>
     </main>
     
+    <script src="/scripts/validator.js"></script>
+    <script src="/scripts/counter.js"></script>
     <script src="/scripts/profilecard.js"></script>
     <script src="/scripts/sidebar.js"></script>
     <script src="/scripts/main.js"></script>
-    <script src="/scripts/profilecard.js" defer></script>
+    <script>
+        document.querySelector('.res-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData.entries());
+            
+            const rules = {
+                business_type: [{type: 'required'}],
+                capital: [{type: 'required'}, {type: 'amount'}],
+                annual_turnover: [{type: 'required'}, {type: 'amount'}],
+                annual_profit: [{type: 'required'}, {type: 'amount'}]
+            };
+            
+            if (!Validator.validateForm(this, rules)) {
+                return;
+            }
+            
+            try {
+                const response = await API.post('/api/assets/business', data);
+                if (response.success) {
+                    alert('Business asset saved successfully!');
+                    this.reset();
+                    updateAssetCounters();
+                } else {
+                    alert('Error saving business asset: ' + (response.message || 'Unknown error'));
+                }
+            } catch (error) {
+                alert('Connection error. Please try again.');
+            }
+        });
+    </script>
 </body>
 </html>

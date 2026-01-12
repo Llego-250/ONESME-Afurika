@@ -44,17 +44,17 @@
                 <!-- Asset type, Location, Sale Amount -->
                 <div class="form-group">
                     <label>Asset type *</label>
-                    <input type="text" placeholder="Asset type">
+                    <input type="text" name="asset_type" placeholder="Asset type">
                 </div>
 
                 <div class="form-group">
                     <label>Location *</label>
-                    <input type="text" placeholder="Select Location...">
+                    <input type="text" name="location" placeholder="Select Location...">
                 </div>
 
                 <div class="form-group">
                     <label>Sale Amount *</label>
-                    <input type="number" value="0.00">
+                    <input type="number" name="sale_amount" value="0.00">
                 </div>
 
                 <div class="form-bottom">
@@ -64,8 +64,41 @@
         </div>
     </main>
     
+    <script src="/scripts/validator.js"></script>
+    <script src="/scripts/counter.js"></script>
     <script src="/scripts/profilecard.js"></script>
     <script src="/scripts/sidebar.js"></script>
     <script src="/scripts/main.js"></script>
+    <script>
+        document.querySelector('.res-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData.entries());
+            
+            const rules = {
+                asset_type: [{type: 'required'}],
+                location: [{type: 'required'}],
+                sale_amount: [{type: 'required'}, {type: 'amount'}]
+            };
+            
+            if (!Validator.validateForm(this, rules)) {
+                return;
+            }
+            
+            try {
+                const response = await API.post('/api/assets/sold', data);
+                if (response.success) {
+                    alert('Sold asset saved successfully!');
+                    this.reset();
+                    updateAssetCounters();
+                } else {
+                    alert('Error saving sold asset: ' + (response.message || 'Unknown error'));
+                }
+            } catch (error) {
+                alert('Connection error. Please try again.');
+            }
+        });
+    </script>
 </body>
 </html>

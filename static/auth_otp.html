@@ -5,24 +5,42 @@
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <title>OTP sent</title>
      <link rel="stylesheet" href="/styles/intrance.css">
+     <script src="/scripts/validator.js"></script>
 </head>
 <body>
      <!-- Card centered -->
      <div class="main">
           <div class="sub">
                <h1>RRA LOGO</h1>
-               <p><strong>Enter your OTP sent via email or phone sms</strong><p>
-               <form action="" method="POST">
+               <p><strong>Enter your OTP sent via email or phone sms (Use 123456 for testing)</strong><p>
+               <form id="otpForm" method="POST">
                     <div style="margin-bottom: 15px;">
-                         <label for="name"><span>Enter OTP</span><span style="color: rebeccapurple;">*</span></label><br>
-                         <input type="text" id="name" name="name" required placeholder="Enter OTP">
+                         <label for="otp"><span>Enter OTP</span><span style="color: rebeccapurple;">*</span></label><br>
+                         <input type="text" id="otp" name="otp" required placeholder="Enter 123456 for testing">
                     </div>
           
                     <div style="text-align: center;">
-                         <!-- <buttonType = button for now -->
-                         <a href="./index.html"><button type="button" required>login</button></a>
+                         <button type="submit" required>Login</button>
                     </div>
+                    
+                    <div id="otpMessage" style="margin-top: 15px; text-align: center; font-size: 14px;"></div>
                </form>
+               
+               <script>
+               document.getElementById('otpForm').addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    const otp = document.getElementById('otp').value.trim();
+                    const messageDiv = document.getElementById('otpMessage');
+                    
+                    if (otp === '123456') {
+                         window.location.href = '/index.html';
+                    } else {
+                         messageDiv.textContent = 'Invalid OTP. Use 123456 for testing.';
+                         messageDiv.style.color = '#e74c3c';
+                    }
+               });
+               </script>
           </div>
      
 </body>

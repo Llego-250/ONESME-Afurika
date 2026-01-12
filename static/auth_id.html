@@ -7,26 +7,42 @@
      <link rel="stylesheet" href="/styles/global.css">
      <link rel="stylesheet" href="/styles/intrance.css">
      <link rel="stylesheet" href="/styles/interactive.css">
+     <script src="/scripts/validator.js"></script>
 </head>
 <body>
      <!-- Card centered -->
      <div class="main">
           <div class="sub">
                <h1>RRA LOGO</h1>
-               <p><strong>Please, enter your ID</strong><p>
-               <form class="loginForm">
+               <p><strong>Please, enter your ID (Use 7516 for testing)</strong><p>
+               <form class="loginForm" id="loginForm">
                     <div style="margin-bottom: 15px;">
                          <label for="employeeId"><span>Employee ID:</span><span style="color: rebeccapurple;">*</span></label><br>
-                         <input type="text" id="employeeId" name="employeeId" required placeholder="Enter your ID eg: 12345">
+                         <input type="text" id="employeeId" name="employeeId" required placeholder="Enter 7516 for testing">
                     </div>
           
                     <div style="text-align: center;">
-                         <!-- <buttonType = button for now -->
-                        <a href="/static/auth_otp.html"><button type="button" id="loginbtn" required>Login</button></a> 
+                         <button type="submit" id="loginbtn" required>Login</button>
                     </div>
                     
                    <div id="loginMessage" style="margin-top: 15px; text-align: center; font-size: 14px;"></div>
                </form>
+               
+               <script>
+               document.getElementById('loginForm').addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    const employeeId = document.getElementById('employeeId').value.trim();
+                    const messageDiv = document.getElementById('loginMessage');
+                    
+                    if (employeeId === '7516') {
+                         window.location.href = '/auth_otp.html';
+                    } else {
+                         messageDiv.textContent = 'Invalid employee ID. Use 7516 for testing.';
+                         messageDiv.style.color = '#e74c3c';
+                    }
+               });
+               </script>
           </div>
      
 </body>

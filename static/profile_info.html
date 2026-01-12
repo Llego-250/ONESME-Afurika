@@ -126,13 +126,14 @@
           </div>
      </main>
 
+     <script src="../scripts/validator.js"></script>
      <script src="../scripts/profilecard.js"></script>
      <script src="../scripts/sidebar.js"></script>
      <script src="../scripts/main.js"></script>
      <script>
-          // Add profile interactivity
-          document.addEventListener('DOMContentLoaded', function() {
-               // Animate profile card on load
+          document.addEventListener('DOMContentLoaded', async function() {
+               await loadProfile();
+               
                const profileCard = document.querySelector('.profile-card');
                if (profileCard) {
                     profileCard.style.opacity = '0';
@@ -145,7 +146,6 @@
                     }, 100);
                }
                
-               // Add hover effects to profile items
                const profileItems = document.querySelectorAll('.profile-item');
                profileItems.forEach(item => {
                     item.addEventListener('mouseenter', function() {
@@ -164,6 +164,22 @@
                     });
                });
           });
+          
+          async function loadProfile() {
+               try {
+                    const response = await API.get('/api/profile');
+                    if (response.success) {
+                         const user = response.user;
+                         document.querySelector('.profile-name').textContent = user.name;
+                         document.querySelector('.profile-position').textContent = user.job_title;
+                         document.querySelectorAll('.profile-value')[0].textContent = user.email;
+                         document.querySelectorAll('.profile-value')[1].textContent = user.status;
+                         document.querySelectorAll('.profile-value')[3].textContent = user.phone || '';
+                    }
+               } catch (error) {
+                    console.error('Failed to load profile:', error);
+               }
+          }
           
           function navigateToPage(page) {
                window.location.href = `/static/${page}`;
